@@ -34,3 +34,5 @@ cd frontend
 npm install
 npm run dev
 ```
+
+![Screenshot](screenshots/full_screen.png) ![Screenshot](screenshots/mobile.png)
