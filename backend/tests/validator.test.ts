@@ -1,4 +1,3 @@
-// filename: validator.test.js
 import { ActivityCreateInput } from '../src/validator';
 
 describe('ActivityCreateInput validation', () => {

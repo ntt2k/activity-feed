@@ -55,6 +55,8 @@ app.post(`/activity`, async (req, res) => {
   }
 });
 
+export default app;
+
 const server = app.listen(3000, () =>
   console.log(`
 🚀 Server ready at: http://localhost:3000
