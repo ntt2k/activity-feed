@@ -1,11 +1,14 @@
 # Activity Feed
 
-## How to start all services
-
-### 1. Start DB
+## How to auto start all services - One command to rule them all!
 ```
 docker-compose up
 ```
+
+## How to manually start services
+
+### 1. Start DB
+Start your own DB on localhost:5432
 
 ### 2. Start Backend API
 ```
