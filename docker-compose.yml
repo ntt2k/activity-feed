@@ -2,6 +2,7 @@ version: "3"
 
 services:
   db:
+    container_name: db
     image: postgres:16-alpine
     ports:
       - 5432:5432
@@ -9,3 +10,32 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=storedb
+  backend:
+    container_name: backend
+    build:
+      dockerfile: ./backend/Dockerfile
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+      - 5555:5555
+    depends_on:
+      - db
+    environment:
+      WAIT_HOSTS: db:5432
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: ./frontend/Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 5173:5173
+    depends_on:
+      - backend
+    environment:
+      WAIT_HOSTS: backend:3000
