@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-import { useAddActivityMutation, api } from "./../api";
+import { useAddActivityMutation } from "./../api";
 
 export default function Modal({ modal, onSetModal }) {
   const [user, setUser] = useState("");
@@ -37,10 +36,8 @@ export default function Modal({ modal, onSetModal }) {
     }
   };
 
-  const dispatch = useDispatch();
   if (isSuccess) {
     onSetModal(!modal);
-    dispatch(api.util.resetApiState());
   }
 
   return (

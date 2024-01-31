@@ -13,6 +13,20 @@ export const api = createApi({
         method: "POST",
         body
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          const patchResult = dispatch(
+            api.util.updateQueryData(
+              "getActivityList",
+              _,
+              (currentCache) => (currentCache = [data, ...currentCache])
+            )
+          );
+        } catch (err) {
+          console.error(err);
+        }
+      }
     }),
     getActivityList: builder.query({
       query: (page) => ({
@@ -34,7 +48,7 @@ export const api = createApi({
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
-      },
+      }
     }),
     getActivityByUser: builder.query({
       query: (user) => ({
