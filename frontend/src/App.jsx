@@ -10,6 +10,7 @@ import Modal from "./components/Modal";
 function App() {
   const [modal, setModal] = useState(false);
   const [page, setPage] = useState(0);
+
   const { data, error, isLoading, isFetching } = useGetActivityListQuery(page);
 
   const [user, setUser] = useState("");
@@ -49,12 +50,17 @@ function App() {
       <NavBar user={user} onSearchUser={setUser} />
       <div className="pt-16">
         {modal && <Modal modal={modal} onSetModal={setModal} />}
+
         {data && !userData
-          ? data.map(({ id, ...props }) => <Card key={id} {...props} />)
+          ? data.map(({ id, ...props }) => (
+              <Card key={id} id={id} {...props} />
+            ))
           : null}
 
         {userData
-          ? userData.map(({ id, ...props }) => <Card key={id} {...props} />)
+          ? userData.map(({ id, ...props }) => (
+              <Card key={id} id={id} {...props} />
+            ))
           : null}
 
         {isLoading || isFetching || isLoadingUser ? <Spinner /> : null}

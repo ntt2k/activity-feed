@@ -5,7 +5,8 @@ import { z } from "zod";
 export const ActivityCreateInput = z.object({
   username: z.string().min(1, { message: "required" }),
   profileImage: z.string(),
-  postContent: z.string().max(200, { message: "max length 200 characters" })
+  postContent: z.string().max(200, { message: "max length 200 characters" }),
+  likeCount: z.number().optional()
 }) satisfies z.Schema<Prisma.ActivityUncheckedCreateInput>;
 
 export const prisma = new PrismaClient().$extends({

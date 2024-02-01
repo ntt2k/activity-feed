@@ -7,27 +7,6 @@ export const api = createApi({
     baseUrl: "http://localhost:3000/"
   }),
   endpoints: (builder) => ({
-    addActivity: builder.mutation({
-      query: (body) => ({
-        url: "activity",
-        method: "POST",
-        body
-      }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          const patchResult = dispatch(
-            api.util.updateQueryData(
-              "getActivityList",
-              _,
-              (currentCache) => (currentCache = [data, ...currentCache])
-            )
-          );
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    }),
     getActivityList: builder.query({
       query: (page) => ({
         url: "activity",
@@ -64,12 +43,51 @@ export const api = createApi({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       }
+    }),
+    addActivity: builder.mutation({
+      query: (body) => ({
+        url: "activity",
+        method: "POST",
+        body
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(
+            api.util.updateQueryData("getActivityList", _, (currentCache) => [
+              data,
+              ...currentCache
+            ])
+          );
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }),
+    likeActivity: builder.mutation({
+      query: (id) => ({
+        url: `like/${id}`,
+        method: "PUT"
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(
+            api.util.updateQueryData("getActivityList", _, (currentCache) =>
+              currentCache.map((a) => (a.id === data.id ? data : a))
+            )
+          );
+        } catch (err) {
+          console.error(err);
+        }
+      }
     })
   })
 });
 
 export const {
-  useAddActivityMutation,
   useGetActivityListQuery,
-  useGetActivityByUserQuery
+  useGetActivityByUserQuery,
+  useAddActivityMutation,
+  useLikeActivityMutation
 } = api;
