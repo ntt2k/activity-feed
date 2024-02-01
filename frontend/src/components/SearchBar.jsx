@@ -9,14 +9,14 @@ export default function SearchBar({ user, onSubmit }) {
   };
 
   return (
-    <form className="mr-4 min-w-full" onSubmit={handleSubmit}>
-      <label className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white">
+    <form className="min-w-full mr-4" onSubmit={handleSubmit}>
+      <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
         Search
       </label>
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+        <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
           <svg
-            className="h-4 w-4 text-gray-500 dark:text-gray-400"
+            className="w-4 h-4 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -34,20 +34,14 @@ export default function SearchBar({ user, onSubmit }) {
         <input
           type="search"
           id="default-search"
-          className="p-3.8 block w-full rounded-lg border border-gray-300 bg-gray-50
-                      ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500
-                      dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400
-                      dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="p-3.8 block w-full rounded-lg border border-gray-300 bg-gray-50 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="Search User"
           value={userQuery}
           onChange={(e) => setUserQuery(e.target.value)}
         />
         <button
           type="submit"
-          className="absolute bottom-1 end-2.5 rounded-lg bg-blue-700
-                      px-2.5 py-1 text-sm font-medium text-white
-                      hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300
-                      dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="absolute bottom-1 end-2.5 rounded-lg bg-blue-700 px-2.5 py-1 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Search
         </button>

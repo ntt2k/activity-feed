@@ -7,9 +7,7 @@ export default function FloatingButton({ modal, onSetModal }) {
         data-dial-toggle="speed-dial-menu-default"
         aria-controls="speed-dial-menu-default"
         aria-expanded="false"
-        className="flex h-14 w-14 items-center justify-center rounded-full
-                  bg-blue-700 text-white hover:bg-blue-800 focus:outline-none focus:ring-4
-                  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="flex items-center justify-center text-white bg-blue-700 rounded-full h-14 w-14 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         <svg
           className="w-6 h-6 text-white"

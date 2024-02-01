@@ -45,9 +45,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="min-h-screen dark:bg-gray-900">
       <NavBar user={user} onSearchUser={setUser} />
-      <div className="mt-28">
+      <div className="pt-16">
         {modal && <Modal modal={modal} onSetModal={setModal} />}
         {data && !userData
           ? data.map(({ id, ...props }) => <Card key={id} {...props} />)
