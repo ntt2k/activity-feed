@@ -38,5 +38,4 @@ npm install
 npm run dev
 ```
 
-![Screenshot](screenshots/full_1.png) ![Screenshot](screenshots/mobile_1.png)
-![Screenshot](screenshots/full_2.png) ![Screenshot](screenshots/mobile_2.png)
+![Screenshot](screenshot.png)
